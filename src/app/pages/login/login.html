@@ -1,54 +1,81 @@
 <div class="login-wrapper">
-    <mat-card class="login-card">
-        <h2 class="title">Login</h2>
+  <div class="left-section">
+    <div class="background-image">
+      <img src="../../../assets/logos/WorkED-logo-white.svg" alt="logo-image-icon" class="logo-image">
+      <div class="top-section">
+        <h1 class="app-name">Empowering Impact Behind the Scenes</h1>
+        <p class="app-description">Log in to manage programs and support learners from TK to high school.</p>
+      </div>
 
-    
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="bottom-section">
+        <div class="footer-section">
+          © 2026, Work ED. All Rights Reserved
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right-section">
+    <div class="login-card">
+      <h2 class="title">Access your Workspace</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div *ngIf="serverError" class="server-error">
+          {{ serverError }}
+        </div>
+        <div class="form-control-wrapper">
+          <label class="label">Email</label>
+          <input class="form-control" type="email" formControlName="email">
+          <!-- <mat-icon matSuffix>email</mat-icon> -->
 
-           
-            <div *ngIf="serverError" class="server-error">
-                {{ serverError }}
-            </div>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
 
-           
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" formControlName="email">
-                <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+            Please enter a valid email
+          </mat-error>
+        </div>
 
-                <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
-                    Email is required
-                </mat-error>
 
-                <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
-                    Please enter a valid email
-                </mat-error>
-            </mat-form-field>
-
-           
-            <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Password</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-
-                <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
-                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
-                </button>
-
-                <mat-error *ngIf="loginForm.get('password')?.hasError('required') 
-  && (loginForm.get('password')?.touched || submitted)">
-                    Password is required
-                </mat-error>
-            </mat-form-field>
-            <div class="reset-link">
-  <a (click)="goToReset()">Forgot Password?</a>
-</div>
-
-           
-            <button mat-raised-button color="primary" class="full-width" type="submit"
-                [disabled]="loginForm.invalid || isSubmitting">
-                {{ isSubmitting ? 'Logging in...' : 'Login' }}
+        <div class="form-control-wrapper">
+          <label class="label">Password</label>
+          <div class="class" style="position: relative; display: flex; align-items: center; width: 100%;">
+            <input class="form-control" [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
+              style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
+              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
+          </div>
+          <mat-error
+            *ngIf="loginForm.get('password')?.hasError('required')  && (loginForm.get('password')?.touched || submitted)">
+            Password is required
+          </mat-error>
+        </div>
+        <div class="reset-link">
+          <a (click)="goToReset()">Forgot Password?</a>
+        </div>
 
-        </form>
-    </mat-card>
+        <div class="button-section">
+          <button class="login-button" type="submit" [disabled]="loginForm.invalid || isSubmitting">
+            {{ isSubmitting ? 'Logging in...' : 'Login' }}
+          </button>
+
+          <button mat-raised-button color="primary" class="login-button" type="submit"
+            [disabled]="loginForm.invalid || isSubmitting">
+            {{ isSubmitting ? 'Logging in...' : 'Login' }}
+          </button>
+        </div>
+
+      </form>
+
+      <div class="right-footer-section">
+
+        <a href="" class="link-section">Terms & Conditions</a>
+
+        <a href="" class="link-section">Privacy Policy</a>
+
+        <a href="" class="link-section">Contact Us</a>
+
+      </div>
+    </div>
+  </div>
 </div>

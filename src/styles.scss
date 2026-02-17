@@ -36,4 +36,132 @@ body {
   margin: 0;
   height: 100%;
 }
+
 /* You can add global styles to this file, and also import other style files */
+.form-control-wrapper {
+  position: relative;
+  width: 100%;
+
+  // Label styling
+  .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  // Form control styling
+  .form-control {
+    display: block;
+    width: 100%;
+    box-sizing: border-box; // Includes padding in width calculation
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition:
+      border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+
+    // Focus state - Green color
+    &:focus {
+      color: #212529;
+      background-color: #fff;
+      border-color: #2ea363;
+      outline: 0;
+      box-shadow: 0 0 0 0.25rem rgba(46, 163, 99, 0.25);
+    }
+
+    // Placeholder
+    &::placeholder {
+      color: #6c757d;
+      opacity: 1;
+    }
+
+    // Disabled and readonly
+    &:disabled,
+    &[readonly] {
+      background-color: #e9ecef;
+      opacity: 1;
+    }
+
+    // Error state (when ng-invalid and ng-touched)
+    &.ng-invalid.ng-touched {
+      border-color: #dc3545;
+
+      &:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+      }
+    }
+  }
+
+  // Material Error styling
+  mat-error {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    color: #dc3545;
+    line-height: 1.4;
+    animation: slideDown 0.2s ease-out;
+  }
+
+  // Optional: Icon suffix styling (if you uncomment mat-icon)
+  mat-icon[matSuffix] {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 1.25rem;
+    pointer-events: none;
+  }
+
+  // When input has suffix icon, add padding
+  &.has-suffix {
+    .form-control {
+      padding-right: 2.5rem;
+    }
+  }
+}
+
+// Animation for error messages
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Optional: Different sizes
+.form-control-wrapper {
+  // Small size
+  &.form-control-sm {
+    .form-control {
+      min-height: calc(1.5em + 0.5rem + 2px);
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
+      border-radius: 0.25rem;
+    }
+  }
+
+  // Large size
+  &.form-control-lg {
+    .form-control {
+      min-height: calc(1.5em + 1rem + 2px);
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      border-radius: 0.5rem;
+    }
+  }
+}
