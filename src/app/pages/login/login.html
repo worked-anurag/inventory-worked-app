@@ -1,0 +1,54 @@
+<div class="login-wrapper">
+    <mat-card class="login-card">
+        <h2 class="title">Login</h2>
+
+    
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+           
+            <div *ngIf="serverError" class="server-error">
+                {{ serverError }}
+            </div>
+
+           
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email">
+                <mat-icon matSuffix>email</mat-icon>
+
+                <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+                    Email is required
+                </mat-error>
+
+                <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+                    Please enter a valid email
+                </mat-error>
+            </mat-form-field>
+
+           
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+
+                <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+                    <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+
+                <mat-error *ngIf="loginForm.get('password')?.hasError('required') 
+  && (loginForm.get('password')?.touched || submitted)">
+                    Password is required
+                </mat-error>
+            </mat-form-field>
+            <div class="reset-link">
+  <a (click)="goToReset()">Forgot Password?</a>
+</div>
+
+           
+            <button mat-raised-button color="primary" class="full-width" type="submit"
+                [disabled]="loginForm.invalid || isSubmitting">
+                {{ isSubmitting ? 'Logging in...' : 'Login' }}
+            </button>
+
+        </form>
+    </mat-card>
+</div>
