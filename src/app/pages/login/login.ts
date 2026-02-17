@@ -16,78 +16,78 @@ import * as AuthActions from '../../store/auth/auth.actions';
   standalone: true,
 
   imports: [
-     CommonModule,
+    CommonModule,
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
 export class Login {
-
   loginForm: FormGroup;
   hide = true;
   serverError: string | null = null;
   isSubmitting = false;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private store: Store
-
+    private store: Store,
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
   submitted = false;
-//   login() {
-//   this.submitted = true;
-//   this.serverError = null;
+  //   login() {
+  //   this.submitted = true;
+  //   this.serverError = null;
 
-//   if (this.loginForm.invalid) {
-//     this.loginForm.markAllAsTouched();
-//     this.loginForm.updateValueAndValidity();  
-//     return;
-//   }
+  //   if (this.loginForm.invalid) {
+  //     this.loginForm.markAllAsTouched();
+  //     this.loginForm.updateValueAndValidity();
+  //     return;
+  //   }
 
-//   this.isSubmitting = true;
+  //   this.isSubmitting = true;
 
-//  this.authService.login(this.loginForm.value)
-//   .subscribe({
-//     next: (res) => {
-//       this.isSubmitting = false;
-//       console.log('Login Success', res);
-//       this.router.navigate(['/dashboard']);
-//     },
-//     error: (err) => {
-//       this.isSubmitting = false;
+  //  this.authService.login(this.loginForm.value)
+  //   .subscribe({
+  //     next: (res) => {
+  //       this.isSubmitting = false;
+  //       console.log('Login Success', res);
+  //       this.router.navigate(['/dashboard']);
+  //     },
+  //     error: (err) => {
+  //       this.isSubmitting = false;
 
-//       // Backend error message
-//       this.serverError =
-//         err?.error?.errors?.[0] || 'Invalid email or password';
-//     }
-//   });
-// }
-login() {
-  if (this.loginForm.invalid) {
-    this.loginForm.markAllAsTouched();
-    return;
+  //       // Backend error message
+  //       this.serverError =
+  //         err?.error?.errors?.[0] || 'Invalid email or password';
+  //     }
+  //   });
+  // }
+  login() {
+    this.submitted = true;
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
+    this.store.dispatch(
+      AuthActions.login({
+        username: this.loginForm.value.email,
+        password: this.loginForm.value.password,
+      }),
+    );
   }
-
-  this.store.dispatch(
-    AuthActions.login({
-      username: this.loginForm.value.email,
-      password: this.loginForm.value.password
-    })
-  );
-}
-goToReset() {
-  this.router.navigate(['/reset-password']);
-}
+  goToReset() {
+    this.router.navigate(['/reset-password']);
+  }
 }

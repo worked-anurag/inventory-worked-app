@@ -25,12 +25,16 @@
           <input class="form-control" type="email" formControlName="email" placeholder="Enter your email"
             autocomplete="new-email">
           <!-- <mat-icon matSuffix>email</mat-icon> -->
-          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          <mat-error
+            *ngIf="loginForm.get('email')?.hasError('required') && (loginForm.get('email')?.touched || submitted)">
             Email is required
           </mat-error>
-          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+
+          <mat-error
+            *ngIf="loginForm.get('email')?.hasError('email') && (loginForm.get('email')?.touched || submitted)">
             Please enter a valid email
           </mat-error>
+
         </div>
         <div class="form-control-wrapper">
           <label class="label">Password</label>
