@@ -121,26 +121,6 @@
         }
       }
 
-      .right-footer-section {
-        display: flex;
-        gap: 1.25rem;
-        position: absolute;
-        bottom: 64px;
-
-        .link-section {
-          font-size: 14px;
-          font-weight: 500;
-          color: #ffffff;
-          text-decoration: none;
-          cursor: pointer;
-          padding-right: 1.25rem;
-          border-right: 1px solid #ffffff;
-          &:last-child {
-            border-right: none;
-          }
-        }
-      }
-
       .button-section {
         display: flex;
         flex-direction: column;
@@ -170,6 +150,27 @@
           &.google {
             color: #334155;
             border: #334155 1px solid;
+          }
+        }
+      }
+
+      .right-footer-section {
+        display: flex;
+        gap: 1.25rem;
+        position: absolute;
+        bottom: 64px;
+        right: 64px;
+
+        .link-section {
+          font-size: 14px;
+          font-weight: 500;
+          color: #ffffff;
+          text-decoration: none;
+          cursor: pointer;
+          padding-right: 1.25rem;
+          border-right: 1px solid #ffffff;
+          &:last-child {
+            border-right: none;
           }
         }
       }

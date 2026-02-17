@@ -6,7 +6,6 @@
         <h1 class="app-name">Empowering Impact Behind the Scenes</h1>
         <p class="app-description">Log in to manage programs and support learners from TK to high school.</p>
       </div>
-
       <div class="bottom-section">
         <div class="footer-section">
           © 2026, Work ED. All Rights Reserved
@@ -32,8 +31,6 @@
             Please enter a valid email
           </mat-error>
         </div>
-
-
         <div class="form-control-wrapper">
           <label class="label">Password</label>
           <div class="class" style="position: relative; display: flex; align-items: center; width: 100%;">
@@ -53,13 +50,10 @@
             </div>
           </div>
         </div>
-
-
         <div class="button-section">
           <button class="login-button login" type="submit" [disabled]="loginForm.invalid || isSubmitting">
             {{ isSubmitting ? 'Signing In...' : 'Sign In' }}
           </button>
-
           <button class="login-button google" type="submit">
             <img src="../../../assets/logos/Google.svg" alt="Google logo" class="google-logo">
             Sign in with Google
@@ -68,13 +62,9 @@
       </form>
 
       <div class="right-footer-section">
-
         <a href="" class="link-section">Terms & Conditions</a>
-
         <a href="" class="link-section">Privacy Policy</a>
-
         <a href="" class="link-section">Contact Us</a>
-
       </div>
     </div>
   </div>
