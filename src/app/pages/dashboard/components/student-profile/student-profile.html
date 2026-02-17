@@ -1,0 +1,26 @@
+<div class="aggrid-container">
+  <div class="header-section">
+    <h2>Student Profile</h2>
+    <div class="search-container">
+      <input type="text" placeholder="Search..." class="search-input" [(ngModel)]="searchQuery"
+        (input)="filterData()" />
+      <mat-icon *ngIf="searchQuery" class="clear-icon" (click)="clearSearch()">clear</mat-icon>
+      <mat-icon *ngIf="!searchQuery" class="clear-icon">search</mat-icon>
+    </div>
+  </div>
+  <div class="grid-table">
+@if(isBrowser){
+  <ag-grid-angular
+    class="ag-theme-quartz"
+    style="height: 500px; width: 100%"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [gridOptions]="gridOptions"
+    (gridReady)="onGridReady($event)">
+  </ag-grid-angular>
+}
+    <div class="grid-row-count">
+      <span>Rows: {{ totalRowCount }}</span>
+    </div>
+  </div>
+</div>

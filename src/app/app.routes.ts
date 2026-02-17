@@ -10,9 +10,9 @@ export const routes: Routes = [
 
   {
   path: 'dashboard',
-  loadComponent: () =>
-    import('./pages/dashboard/dashboard')
-      .then(m => m.Dashboard),
+  loadChildren: () =>
+    import('./pages/dashboard/dashboard.routes')
+      .then(m => m.DashboardRoutes),
        canActivate: [authGuard] 
 }
 
