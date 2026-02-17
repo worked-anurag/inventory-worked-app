@@ -16,13 +16,14 @@
   <div class="right-section">
     <div class="login-card">
       <h2 class="title">Access your Workspace</h2>
-      <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form" autocomplete="off" novalidate>
         <div *ngIf="serverError" class="server-error">
           {{ serverError }}
         </div>
         <div class="form-control-wrapper">
           <label class="label">Email</label>
-          <input class="form-control" type="email" formControlName="email">
+          <input class="form-control" type="email" formControlName="email" placeholder="Enter your email"
+            autocomplete="new-email">
           <!-- <mat-icon matSuffix>email</mat-icon> -->
           <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
             Email is required
@@ -34,7 +35,8 @@
         <div class="form-control-wrapper">
           <label class="label">Password</label>
           <div class="class" style="position: relative; display: flex; align-items: center; width: 100%;">
-            <input class="form-control" [type]="hide ? 'password' : 'text'" formControlName="password">
+            <input class="form-control" [type]="hide ? 'password' : 'text'" formControlName="password"
+              placeholder="Enter your password" autocomplete="new-password">
             <button mat-icon-button matSuffix type="button" (click)="hide = !hide"
               style="position: absolute; right: 0; top: 50%; transform: translateY(-50%);">
               <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
