@@ -1,0 +1,68 @@
+
+.aggrid-container {
+  margin: 1.5rem;
+  display: grid;
+  gap: 1rem;
+
+  .header-section {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    align-items: center;
+    gap: 1rem;
+
+    h2 {
+      font-size: 18px !important;
+      font-weight: 600;
+      line-height: 24px !important;
+    }
+
+    .search-container {
+      position: relative;
+      width: 100%; // Make container responsive or set specific width
+      max-width: 300px; // Or set to any width you want
+      white-space: nowrap;
+
+      .search-input {
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        outline: none;
+        font-size: 14px;
+        padding: 12px 1rem 12px 8px; // Extra right padding for icon space
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        &::placeholder {
+          color: #94a3b8;
+        }
+      }
+
+      .mat-icon {
+        position: absolute;
+        right: 0; // Give some padding from the edge
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #888;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .grid-table {
+    position: relative;
+    .grid-row-count {
+      font-weight: 500;
+      font-size: 14px;
+      position: absolute;
+      bottom: -45px;
+      left: 0;
+      width: -webkit-fill-available;
+      padding: 10px;
+      height: auto;
+      background-color: #ffffff;
+    }
+  }
+}
