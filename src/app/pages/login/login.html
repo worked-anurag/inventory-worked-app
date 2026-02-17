@@ -17,7 +17,7 @@
   <div class="right-section">
     <div class="login-card">
       <h2 class="title">Access your Workspace</h2>
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
         <div *ngIf="serverError" class="server-error">
           {{ serverError }}
         </div>
@@ -25,11 +25,9 @@
           <label class="label">Email</label>
           <input class="form-control" type="email" formControlName="email">
           <!-- <mat-icon matSuffix>email</mat-icon> -->
-
           <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
             Email is required
           </mat-error>
-
           <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
             Please enter a valid email
           </mat-error>
@@ -45,26 +43,28 @@
               <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
           </div>
-          <mat-error
-            *ngIf="loginForm.get('password')?.hasError('required')  && (loginForm.get('password')?.touched || submitted)">
-            Password is required
-          </mat-error>
+          <div class="error-and-link">
+            <mat-error
+              *ngIf="loginForm.get('password')?.hasError('required')  && (loginForm.get('password')?.touched || submitted)">
+              Password is required
+            </mat-error>
+            <div class="reset-link">
+              <a (click)="goToReset()">Forgot Password?</a>
+            </div>
+          </div>
         </div>
-        <div class="reset-link">
-          <a (click)="goToReset()">Forgot Password?</a>
-        </div>
+
 
         <div class="button-section">
-          <button class="login-button" type="submit" [disabled]="loginForm.invalid || isSubmitting">
-            {{ isSubmitting ? 'Logging in...' : 'Login' }}
+          <button class="login-button login" type="submit" [disabled]="loginForm.invalid || isSubmitting">
+            {{ isSubmitting ? 'Signing In...' : 'Sign In' }}
           </button>
 
-          <button mat-raised-button color="primary" class="login-button" type="submit"
-            [disabled]="loginForm.invalid || isSubmitting">
-            {{ isSubmitting ? 'Logging in...' : 'Login' }}
+          <button class="login-button google" type="submit">
+            <img src="../../../assets/logos/Google.svg" alt="Google logo" class="google-logo">
+            Sign in with Google
           </button>
         </div>
-
       </form>
 
       <div class="right-footer-section">

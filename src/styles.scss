@@ -4,8 +4,8 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
-@import "ag-grid-community/styles/ag-grid.css";
-@import "ag-grid-community/styles/ag-theme-quartz.css";
+// @import "ag-grid-community/styles/ag-grid.css";
+// @import 'ag-grid-community/styles/ag-theme-quartz.css';
 
 html {
   height: 100%;
@@ -59,6 +59,7 @@ body {
     width: 100%;
     box-sizing: border-box; // Includes padding in width calculation
     padding: 0.375rem 0.75rem;
+    min-height: calc(1.5em + 0.75rem + 2px) /* Default height for medium size */;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -95,11 +96,11 @@ body {
 
     // Error state (when ng-invalid and ng-touched)
     &.ng-invalid.ng-touched {
-      border-color: #dc3545;
+      border-color: #f22e2e;
 
       &:focus {
-        border-color: #dc3545;
-        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+        border-color: #f22e2e;
+        box-shadow: 0 0 0 0.25rem rgba(242, 46, 46, 0.25);
       }
     }
   }
@@ -109,7 +110,7 @@ body {
     display: block;
     margin-top: 0.25rem;
     font-size: 0.875rem;
-    color: #dc3545;
+    color: #f22e2e;
     line-height: 1.4;
     animation: slideDown 0.2s ease-out;
   }
