@@ -6,6 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { AgGridAngular } from 'ag-grid-angular';
+import { SocketService } from '../../service/socket.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,5 +24,20 @@ import { AgGridAngular } from 'ag-grid-angular';
   styleUrl: './dashboard.scss',
 })
 export class Dashboard {
+
+
+  constructor(private socketService: SocketService) {}
+
+ngOnInit() {
+
+  this.socketService.connect('/roster');
+
+  this.socketService.messages$.subscribe(msg => {
+    if (msg) {
+      console.log('Socket Event:', msg);
+    }
+  });
+}
+
 
 }
